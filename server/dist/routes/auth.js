@@ -16,14 +16,10 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const express_1 = __importDefault(require("express"));
 const index_js_1 = require("../middleware/index.js");
 const index_js_2 = require("../db/index.js");
-const zod_1 = require("zod");
+const commonpackage_1 = require("@dhruvmehta208/commonpackage");
 const router = express_1.default.Router();
-const signupInput = zod_1.z.object({
-    username: zod_1.z.string().min(1).max(10),
-    password: zod_1.z.string().min(3).max(6)
-});
 router.post('/signup', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const parsedInput = signupInput.safeParse(req.body);
+    const parsedInput = commonpackage_1.signupInput.safeParse(req.body);
     if (!parsedInput.success) {
         res.status(411).json({
             error: parsedInput.error
